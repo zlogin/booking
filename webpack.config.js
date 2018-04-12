@@ -1,10 +1,12 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     devtool: 'source-map',
     entry: [
-        './src/index.js'
+        './src/index.js',
+        './src/scss/App.scss'
     ],
     output: {
         path: path.join(__dirname, 'build'),
@@ -19,12 +21,34 @@ module.exports = {
                 include: path.join(__dirname, 'src')
             },
             {
-                test: /\.scss/,
-                loaders: ['style-loader', 'css-loader', 'sass-loader'],
+                test: /\.(sass|scss)$/,
+                include: path.resolve(__dirname, 'src/scss'),
+                use: ExtractTextPlugin.extract({
+                use: [
+                    {
+                        loader: "css-loader",
+                        options: {
+                            sourceMap: true,
+                            minimize: true,
+                            url: false
+                        }
+                    },
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            sourceMap: true
+                        }
+                    }
+                ]
+                })
             }
         ]
     },
     plugins: [
+        new ExtractTextPlugin({
+            filename: './css/style.bundle.css',
+            allChunks: true,
+        }),
         new HtmlWebpackPlugin({
             template: 'index.html'
         })
