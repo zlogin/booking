@@ -12,7 +12,9 @@ class App extends Component {
             <div className="calendar">
                 <div className="calendar__month action__carousel">
                     <i className="action action__prev" ></i>
-                    <span className="month__current">Апрель</span>
+                    <div className="month__detail">
+                        <span className="month__title">Апрель</span>
+                    </div>
                     <i className="action action__next"></i>
                 </div>
                 <RoomList />
