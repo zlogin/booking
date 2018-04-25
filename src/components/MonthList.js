@@ -17,9 +17,17 @@ class MonthList extends Component {
         
         return (
             <div className="calendar__month action__carousel">
-                <i className="action action__prev" onClick = { this.prevMonth } ></i>
+                <i className="action action__prev" onClick = { this.prevMonth } >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                        <polygon points="30 10, 10 25, 30 40" />
+                    </svg>
+                </i>
                 <Month month = { this.state.month } />
-                <i className="action action__next" onClick = { this.nextMonth } ></i>
+                <i className="action action__next" onClick = { this.nextMonth } >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                        <polygon points="20 10, 40 25, 20 40" />
+                    </svg>
+                </i>
             </div>
         )
     }
